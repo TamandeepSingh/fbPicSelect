@@ -18,6 +18,7 @@ export default class MainPage extends Component<{}>{
         console.log('login was cancelled');
       }else{
         console.log('login was success' + result.grantedPermissions.toString());
+        Actions.anotherpage();
       }
     })
   }
@@ -28,7 +29,7 @@ export default class MainPage extends Component<{}>{
         <Text style = {styles.welcome} >
           This is main page!
         </Text>
-        <Button title='Login to FB' onPress={this._fbAuth()} />
+        <Button title='Login to FB' onPress={this._fbAuth} />
       </View>
     );
   }

@@ -15,6 +15,7 @@ import FBSDK , { LoginManager } from 'react-native-fbsdk';
 import {Actions, Router, Scene} from 'react-native-router-flux';
 import PropTypes from 'prop-types';
 import MainPage from './mainPage';
+import ShowPics from './selectHere';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -34,6 +35,7 @@ export default class App extends Component<{}> {
       <Router>
         <Scene key = "root" >
           <Scene key = "home" component = {MainPage} title="Home" initial />
+          <Scene key = "anotherpage" component = {ShowPics} title="Welcome" />
         </Scene>
       </Router>
     );
