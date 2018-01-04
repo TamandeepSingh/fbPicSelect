@@ -9,18 +9,69 @@ import {
 import {Actions} from 'react-native-router-flux';
 import PropTypes from 'prop-types';
 import FBSDK , {LoginManager} from 'react-native-fbsdk';
+//import FacebookLogin from 'react-native-android-facebook-login';
 
 export default class MainPage extends Component<{}>{
 
-  _fbAuth(){
-    LoginManager.logInWithReadPermissions(['public_profile', 'user_photos']).then(function(result){
-      if(result.isCancelled){
-        console.log('login was cancelled');
-      }else{
-        console.log('login was success' + result.grantedPermissions.toString());
-        Actions.anotherpage();
-      }
-    })
+/*  constructor(nativeProps) {
+    super(nativeProps)
+
+    this.state = {
+      profile: null,
+      didCancelled: false
+    }
+  }
+
+  async getUserProfileAndSetState() {
+    const profile = await FacebookLogin.getLoggedInUserProfile()
+
+    if (profile) {
+      this.setState({
+        profile
+      })
+    }
+  }
+
+  async logIn() {
+    const loggedIn = FacebookLogin.isLoggedIn()
+
+    if (loggedIn) {
+        this.getUserProfileAndSetState()
+        return
+    }
+
+    const loginResult = await FacebookLogin.logInWithReadPermissions(['public_profile'])
+
+    if (loginResult.isCancelled) {
+        this.setState({
+          didCancelled: true
+        })
+
+      return
+    }
+
+      this.getUserProfileAndSetState()
+  }user_photos
+*/
+
+  _fbAuth() {
+      console.log("heelloo");
+      LoginManager.logOut();
+      console.log("logged out");
+      LoginManager.logInWithReadPermissions(['public_profile']).then(
+          function(result) {
+              if (result.isCancelled) {
+                  console.log('Login cancelled');
+              } else {
+                  console.log('Login success with permissions: ' +
+                      result.grantedPermissions.toString());
+                  Actions.anotherpage();    
+              }
+          },
+          function(error) {
+              console.log('Login fail with error: ' + error);
+          }
+      );
   }
 
   render(){
