@@ -8,64 +8,24 @@ import {
 } from 'react-native';
 import {Actions} from 'react-native-router-flux';
 import PropTypes from 'prop-types';
-import FBSDK , {LoginManager} from 'react-native-fbsdk';
-//import FacebookLogin from 'react-native-android-facebook-login';
+import FBSDK , {LoginManager , AccessToken, GraphRequestManager, GraphRequest} from 'react-native-fbsdk';
 
 export default class MainPage extends Component<{}>{
 
-/*  constructor(nativeProps) {
-    super(nativeProps)
-
-    this.state = {
-      profile: null,
-      didCancelled: false
-    }
-  }
-
-  async getUserProfileAndSetState() {
-    const profile = await FacebookLogin.getLoggedInUserProfile()
-
-    if (profile) {
-      this.setState({
-        profile
-      })
-    }
-  }
-
-  async logIn() {
-    const loggedIn = FacebookLogin.isLoggedIn()
-
-    if (loggedIn) {
-        this.getUserProfileAndSetState()
-        return
-    }
-
-    const loginResult = await FacebookLogin.logInWithReadPermissions(['public_profile'])
-
-    if (loginResult.isCancelled) {
-        this.setState({
-          didCancelled: true
-        })
-
-      return
-    }
-
-      this.getUserProfileAndSetState()
-  }user_photos
-*/
+// user_photos
 
   _fbAuth() {
       console.log("heelloo");
       LoginManager.logOut();
       console.log("logged out");
-      LoginManager.logInWithReadPermissions(['public_profile']).then(
+      LoginManager.logInWithReadPermissions(['public_profile','user_photos']).then(
           function(result) {
               if (result.isCancelled) {
                   console.log('Login cancelled');
               } else {
                   console.log('Login success with permissions: ' +
                       result.grantedPermissions.toString());
-                  Actions.anotherpage();    
+                  Actions.anotherpage();
               }
           },
           function(error) {
