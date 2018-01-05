@@ -10,16 +10,7 @@ import {Actions} from 'react-native-router-flux';
 import FBSDK , {LoginManager , AccessToken, GraphRequestManager, GraphRequest} from 'react-native-fbsdk';
 
 export default class ShowPics extends Component<{}>{
-/*
-  _responseInfoCallback(error: ?Object, result: ?Object) {
-    console.log("hello aaaaaaaaaaaaa");
-    if (error) {
-      console.log('Error fetching data: ' + error.toString());
-    } else {
-      console.log('Success fetching data: ' + result.toString());
-    }
-  }
-*/
+
   _picSelect(){
     console.log("in picselect");
     const responseInfoCallback = (error, result) => {
@@ -36,7 +27,7 @@ export default class ShowPics extends Component<{}>{
     '/me/photos',
     {parameters: {
                     fields: {
-                      string: 'email,name,first_name,middle_name,last_name'
+                      string: 'email,name,link,picture,webp_images'
                     }
                   }
             },
